@@ -1,10 +1,13 @@
+import { RouterProvider } from 'react-router-dom';
+import AuthProvider from './contexts/AuthProvider';
+import router from './routes/AllRoutes';
+import './styles/App.css';
+
 function App() {
   return (
-    <div className='App my-container'>
-      <h1 className='text-yellow-900 text-center text-md lg:text-3xl lg:px-4'>
-        This is Tracker by Babul
-      </h1>
-    </div>
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   );
 }
 
