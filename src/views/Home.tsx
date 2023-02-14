@@ -1,9 +1,10 @@
 import React from 'react';
+import User from '../components/User';
 
 function Home() {
   return (
     <div className=' flex justify-center items-center'>
-      <h1 className='text-darkChocolate'>Home page</h1>
+      <User paraStyle={{ color: '#3b5', fontSize: '24px' }} />
     </div>
   );
 }
