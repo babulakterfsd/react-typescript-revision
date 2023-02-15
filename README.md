@@ -1,5 +1,7 @@
 # Let's Boom :
 
+#### jodi react typescript dekha laage, ami shobar aage codeevolution er react typrescript series dekhbo. anisul vai ba onno karo ta pore. karon codeevolution er okhne almost shob kichu details e deya ache
+
 [https://www.youtube.com/watch?v=zLyeWSfTMa8&list=PLC3y8-rFHvwi1AXijGTKM0BKtHzVC-LSK&index=5&ab_channel=Codevolution]
 
 1.  props akare ja ashbe setar type direct define kore deya
@@ -48,13 +50,13 @@ ekhon ei Status component jekhan thekei call koruk, status naame je props ashbe,
 
     maane ekhane initial value deya hoyeche null, but future e change hote pare user er type. tai aage thekei logical or use kore evabe deya hoyeche.
 
-11. ts with react e kivabe useState use kora hoy generics er sathe, seta User component dekhano hoyeche
-12. type assertion naamer ekta jinish ache. jemon 11 number point er khetre jodi emon hoy j user ekbar login korle ar logout korbe na ba jekono karonei hok, user always thakbe.. tahole to shob jaygay optional chaining use korar dorkar nai. sekhetre type assertion use korte pari evabe :
+11. usestate hook er sathe ts eveabe dite hoy: const [data, setData] = useState<null | User>(null); null user korle ei state use korar somoy obosshoi optional chaining use korte hobe. r seta jodi na korar iccha thake, tobe evabe state define korte hobe
+    const [data, setData] = useState<User>({} as User); ekhane ullekkho je User type ta upore define kore nite hobe.
+    type assertion naamer ekta jinish ache. jemon, jodi emon hoy j user ekbar login korle ar logout korbe na ba jekono karonei hok, user always thakbe.. tahole to shob jaygay optional chaining use korar dorkar nai. sekhetre type assertion use korte pari evabe :
     const [user, setUser] = useState< authUser >({} as authUser)
-
     bass hoye gelo. kintu sabdhanota obolombon kora uchit eta use korar khetre .
 
-13. useRef use korar somoy evabe type guard use korte hoy.. maane condition check korte hoy. karon typescript j current er value pabei tar kono guaranty nai.
+12. useRef use korar somoy evabe type guard use korte hoy.. maane condition check korte hoy. karon typescript j current er value pabei tar kono guaranty nai.
 
 const emailRef = useRef<HTMLInputElement>(null);
 
@@ -73,9 +75,34 @@ ref={emailRef}
 onChange={(e) => setEmail(e.target.value)}
 />
 
-14. generics er jonno dashboard er moddhe userList namer ekta component baniyechi. okhane shob deya ache kivabe generics use korte hoy.
+13. evabe generics use korte hoy:
+    type userListType = {
+    name: string;
+    btc: number;
+    }
 
-15. props restriction ar never er use niye ei video ta best [https://www.youtube.com/watch?v=yqn9Fkv7f2M&list=PLC3y8-rFHvwi1AXijGTKM0BKtHzVC-LSK&index=20&ab_channel=Codevolution]
+type UserListProps<T> = {
+currentUserList: T[];
+onClick: (user: T) => void;
+};
+
+const UsersList = <T extends userListType>({ currentUserList, onClick }: UserListProps<T>) => {
+return (
+
+<div>
+<p>This is the user list</p>
+{currentUserList.map((user, index) => (
+<div key={index} onClick={() => onClick(user)}>
+<p>{user.name}</p>
+</div>
+))}
+</div>
+);
+};
+
+export default UsersList;
+
+14. props restriction ar never er use niye ei video ta best [https://www.youtube.com/watch?v=yqn9Fkv7f2M&list=PLC3y8-rFHvwi1AXijGTKM0BKtHzVC-LSK&index=20&ab_channel=Codevolution]
 
 ## Documentation by Anisul Islam vai
 
